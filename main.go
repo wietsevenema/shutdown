@@ -45,12 +45,13 @@ func (app *App) serveIndex(
 	tpl.Execute(w, &IndexPage{})
 }
 
-// serveIndex returns the index.html file
 func (app *App) deleteSelf(
 	w http.ResponseWriter, r *http.Request) {
 
 	err := run.DeleteSelf()
 	if err != nil {
-		fmt.Fprint(w, err)
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+	} else {
+		fmt.Fprintln(w, "Service deleted")
 	}
 }
