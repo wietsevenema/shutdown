@@ -1,0 +1,6 @@
+steps:
+  - name: "docker"
+    args: ["docker", "build", "-t", "gcr.io/$PROJECT_ID/shutdown", "."]  
+
+images:
+  - "gcr.io/$PROJECT_ID/shutdown" 
